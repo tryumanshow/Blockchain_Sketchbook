@@ -12,6 +12,10 @@ from flask import Flask, jsonify, request # flask: one of the web framework in p
 # A huge class 'Blockchain'
 class Blockchain:
     def __init__(self):
+        """
+            TODO: Add the docstring on attributes 
+            check https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html for example on class
+        """
         self.current_transactions = []
         self.chain = []
         self.nodes = set()
@@ -65,6 +69,9 @@ class Blockchain:
 
             # Check that the Proof of Work is correct
             # If PoW is incorrect, also invalid. (PoW algorithm in this code seems quite different from what I know.)
+            # NOTE: PoW algorithm usually has a threshold called difficulty (e.g. 0x0000fffffffffff...) to limit the set of hash generated from sha256.
+            # This was usually used to ease processing the massive amount of request simultaneously, but it created the criteria which block to accept for PoW consensus
+            # Check out on how Ethereum controls its threshold here at https://github.com/giact/ethereum-blocktime-simulator/blob/master/ethereum-blocktime-simulator.py
             if not self.valid_proof(last_block['proof'], block['proof'], last_block_hash):
                 return False
 

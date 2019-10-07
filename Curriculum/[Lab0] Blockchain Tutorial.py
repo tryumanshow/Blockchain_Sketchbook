@@ -12,10 +12,10 @@ from flask import Flask, jsonify, request # flask: one of the web framework in p
 # A huge class 'Blockchain'
 class Blockchain:
     def __init__(self):
-        self.current_transactions = []
-        self.chain = []
-        self.nodes = set()
-
+        # All three objects below would be used later to specify blockchain elements
+        self.current_transactions = [] # A list to save transactions
+        self.chain = [] # A list to save chain
+        self.nodes = set() # A set to save unique nodes
         # Create the genesis block (The first block of a blockchain)
         self.new_block(previous_hash='1', proof=100)
 
@@ -64,7 +64,8 @@ class Blockchain:
                 return False
 
             # Check that the Proof of Work is correct
-            # If PoW is incorrect, also invalid. (PoW algorithm in this code seems quite different from what I know.)
+            # If PoW is incorrect, also invalid.
+            # To return True, hashed value should satisfy the level of threshold made in advance. (In this case, the first 4 digits '0000')
             if not self.valid_proof(last_block['proof'], block['proof'], last_block_hash):
                 return False
 
@@ -192,7 +193,7 @@ class Blockchain:
 
         return proof
 
-    # Would return True only if the first 4 digits of hashed value is '0000'
+    # Would return True only if the first 4 digits of hashed value are '0000'
     @staticmethod
     def valid_proof(last_proof, proof, last_hash):
         """

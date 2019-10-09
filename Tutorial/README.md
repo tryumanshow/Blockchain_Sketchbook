@@ -1,5 +1,2 @@
-# Blockchain_Sketchbook
-Individual Blockchain Study Space with Skkrypto
-
- * Tutorial
+# Blockchain_Sketchbook/Tutorial
    - Lab0: Damien van Flymen's Blockchain Tutorial Documentation
